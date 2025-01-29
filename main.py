@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 
 import os, io
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "atomic-monument-449117-h0-9d24d55c9d36.json"
+#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = ""
 from google.cloud import speech
 from google.protobuf import wrappers_pb2
 from google.cloud import texttospeech_v1
