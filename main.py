@@ -74,7 +74,7 @@ def sample_analyze_sentiment(text_content: str = "The weather is nice."):
     # Get the language of the text, which will be the same as
     # the language specified in the request or, if not specified,
     # the automatically-detected language.
-    print(f"Language of the text: {response.language_code}")
+    # print(f"Language of the text: {response.language_code}")
 
     return response
 
