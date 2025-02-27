@@ -8,8 +8,8 @@ import os, io
 from google.cloud import speech
 from google.protobuf import wrappers_pb2
 from google.cloud import texttospeech_v1
-from IPython.display import Audio, display
-from google.cloud import language_v2
+#from IPython.display import Audio, display
+from google.cloud import language
 
 app = Flask(__name__)
 
@@ -41,29 +41,26 @@ def sample_analyze_sentiment(text_content: str = "The weather is nice."):
       text_content: The text content to analyze.
     """
 
-    client = language_v2.LanguageServiceClient()
+    client = language.LanguageServiceClient()
 
     # text_content = 'I am so happy and joyful.'
 
     # Available types: PLAIN_TEXT, HTML
-    document_type_in_plain_text = language_v2.Document.Type.PLAIN_TEXT
+    document_type_in_plain_text = language.Document.Type.PLAIN_TEXT
 
-    # Optional. If not specified, the language is automatically detected.
-    # For list of supported languages:
-    # https://cloud.google.com/natural-language/docs/languages
+
     language_code = "en"
     document = {
         "content": text_content,
-        "type_": document_type_in_plain_text,
-        "language_code": language_code,
+        "type_": document_type_in_plain_text
     }
 
     # Available values: NONE, UTF8, UTF16, UTF32
     # See https://cloud.google.com/natural-language/docs/reference/rest/v2/EncodingType.
-    encoding_type = language_v2.EncodingType.UTF8
+    #encoding_type = language.EncodingType.UTF8
 
     response = client.analyze_sentiment(
-        request={"document": document, "encoding_type": encoding_type}
+        request={"document": document}
     )
     # Get overall sentiment of the input document
     print(f"Document sentiment score: {response.document_sentiment.score}")
